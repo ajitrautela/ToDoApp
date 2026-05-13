@@ -6,6 +6,7 @@ using ToDoApp.Server.Business.Contracts;
 using ToDoApp.Server.Data;
 using ToDoApp.Server.Data.Repository;
 using ToDoApp.Server.Data.Repository.Contracts;
+using ToDoApp.Server.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,7 +86,10 @@ app.UseExceptionHandler(appError =>
     });
 });
 
+// Custom API key authentication middleware
+app.UseMiddleware<ApiKeyMiddleware>();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

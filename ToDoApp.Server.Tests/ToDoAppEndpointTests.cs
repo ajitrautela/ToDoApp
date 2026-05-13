@@ -13,6 +13,8 @@ namespace ToDoApp.Server.Tests
         public ToDoAppEndpointTests(WebApplicationFactory<Program> factory)
         {
             _client = factory.CreateClient();
+            // hardcoded API token for this demo, in a real application this should be securely stored and managed
+            _client.DefaultRequestHeaders.Add("x-api-token", "6CBxzdYcEgNDrRhMbDpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwUkN");
         }
 
         [Fact]
