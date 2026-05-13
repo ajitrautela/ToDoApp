@@ -37,8 +37,8 @@ namespace ToDoApp.Server.Controllers
         }
 
         [HttpGet]
-        [Route("id:Guid")]
-        public async Task<ActionResult<ToDoItemDto>> GetToDoItemById(Guid id)
+        [Route("id:int")]
+        public async Task<ActionResult<ToDoItemDto>> GetToDoItemById(int id)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace ToDoApp.Server.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteToDoItems([FromBody] Guid id)
+        public async Task<ActionResult> DeleteToDoItems([FromBody] int id)
         {
             try
             {

@@ -16,6 +16,16 @@ builder.Services.AddLogging();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        policy.WithOrigins("https://localhost:56866")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddSingleton<IToDoAppService, ToDoAppService>();
 builder.Services.AddSingleton<IToDoRepository, ToDoRepository>();
 
@@ -38,6 +48,8 @@ builder.Services.AddApiVersioning(options =>
 builder.Services.AddDbContext<ToDoDbContext>(options => options.UseInMemoryDatabase("ToDoAppDb"), ServiceLifetime.Singleton);
 
 var app = builder.Build();
+
+app.UseCors("AllowAngular");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

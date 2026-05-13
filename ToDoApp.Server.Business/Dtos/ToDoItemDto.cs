@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using ToDoApp.Server.Models.Domain;
+﻿using ToDoApp.Server.Models.Domain;
 
 namespace ToDoApp.Server.Business.Dtos
 {
     public class ToDoItemDto
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
         public required string ItemName { get; set; }
-        public required bool IsCompleted { get; set; } = false;
+        public required bool IsCompleted { get; set; }
     }
 
     // Mapping extension methods to convert between ToDoItem and ToDoItemDto

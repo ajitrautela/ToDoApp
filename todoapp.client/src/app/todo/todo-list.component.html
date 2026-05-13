@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="display-3 m-2">ToDo App Demo</div>
+  <p *ngIf="!isLoading && todos.length === 0" class="m-2">No items yet.</p>
+
+  <form *ngIf="!isLoading" (ngSubmit)="addTodoItem()">
+    <input type="text"
+           [(ngModel)]="newItemName"
+           name="itemName"
+           placeholder="Add a new task"
+           class="form-control m-2" />
+    <button type="submit" class="btn btn-primary m-2">Add New Item</button>
+  </form>
+
+  <div *ngIf="isLoading" class="spinner-border m-2">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div *ngIf="error" class="alert alert-danger m-2">{{ error }}</div>
+
+  <div *ngIf="!isLoading && todos.length > 0">
+    <p class="display-6 m-2">Items List</p>
+    <ul>
+      <li *ngFor="let todo of todos">
+        <span>{{ todo.itemName }}</span>
+        <input type="checkbox" checked={{ todo.isCompleted }} />
+        <button (click)="deleteTodoItem(todo.id)" class="btn btn-danger">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+</div>

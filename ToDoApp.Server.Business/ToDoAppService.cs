@@ -1,7 +1,6 @@
 ﻿using ToDoApp.Server.Business.Contracts;
 using ToDoApp.Server.Business.Dtos;
 using ToDoApp.Server.Data.Repository.Contracts;
-using ToDoApp.Server.Models.Domain;
 
 namespace ToDoApp.Server.Business
 {
@@ -24,13 +23,13 @@ namespace ToDoApp.Server.Business
             return returnedItems.Select(x => x.ToDto()).ToList();
         }
 
-        public async Task<ToDoItemDto?> GetToDoItemByIdAsync(Guid id)
+        public async Task<ToDoItemDto?> GetToDoItemByIdAsync(int id)
         {
             var returnedItem = await _toDoRepository.GetByIdAsync(id);
             return returnedItem?.ToDto();
         }
 
-        public async Task<bool> DeleteToDoItemAsync(Guid id)
+        public async Task<bool> DeleteToDoItemAsync(int id)
         {
             return await _toDoRepository.DeleteAsync(id);
         }

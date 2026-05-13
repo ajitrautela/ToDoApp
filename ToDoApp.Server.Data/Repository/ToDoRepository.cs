@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using ToDoApp.Server.Data.Repository.Contracts;
 using ToDoApp.Server.Models.Domain;
 
@@ -27,13 +24,13 @@ namespace ToDoApp.Server.Data.Repository
             return await _dbContext.ToDoItems.ToListAsync();
         }
 
-        public async Task<ToDoItem?> GetByIdAsync(Guid id)
+        public async Task<ToDoItem?> GetByIdAsync(int id)
         {
             var item = await _dbContext.ToDoItems.FirstOrDefaultAsync(x => x.Id == id);
             return item;
         }
 
-        public async Task<bool> DeleteAsync(Guid id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var item = await _dbContext.ToDoItems.FirstOrDefaultAsync(x => x.Id == id);
             if (item == null)
