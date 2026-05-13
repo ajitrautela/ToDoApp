@@ -1,31 +1,55 @@
-using Scalar.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-using ToDoApp.Server.Data;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using ToDoApp.Server.Business;
+using ToDoApp.Server.Business.Contracts;
+using ToDoApp.Server.Data;
+using ToDoApp.Server.Data.Repository;
+using ToDoApp.Server.Data.Repository.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddLogging();
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ToDoDbContext>(options => options.UseInMemoryDatabase("ToDoAppDb"));
+builder.Services.AddSingleton<IToDoAppService, ToDoAppService>();
+builder.Services.AddSingleton<IToDoRepository, ToDoRepository>();
+
+// API versioning configuration
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new ApiVersion(1);
+    options.ReportApiVersions = true;
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ApiVersionReader = ApiVersionReader.Combine(
+        new UrlSegmentApiVersionReader());
+})
+.AddMvc() 
+.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'V";
+    options.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddDbContext<ToDoDbContext>(options => options.UseInMemoryDatabase("ToDoAppDb"), ServiceLifetime.Singleton);
 
 var app = builder.Build();
-
-app.UseDefaultFiles();
-app.MapStaticAssets();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseDefaultFiles();
+app.MapStaticAssets();
 
 var logger = app.Services.GetService<ILogger<Program>>();
 // Global exception handling middleware
@@ -49,7 +73,6 @@ app.UseExceptionHandler(appError =>
     });
 });
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

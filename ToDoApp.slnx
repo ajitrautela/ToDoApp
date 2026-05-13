@@ -6,5 +6,6 @@
   <Project Path="ToDoApp.Server.Business/ToDoApp.Server.Business.csproj" />
   <Project Path="ToDoApp.Server.Data/ToDoApp.Server.Data.csproj" />
   <Project Path="ToDoApp.Server.Models/ToDoApp.Server.Models.csproj" />
+  <Project Path="ToDoApp.Server.Tests/ToDoApp.Server.Tests.csproj" />
   <Project Path="ToDoApp.Server/ToDoApp.Server.csproj" />
 </Solution>

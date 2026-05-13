@@ -1,11 +1,13 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using ToDoApp.Server.Business.Contracts;
 using ToDoApp.Server.Business.Dtos;
 
 namespace ToDoApp.Server.Controllers
 {
+    [ApiVersion(1)]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v{v:apiVersion}/[controller]")]
     public class ToDoItemsController : ControllerBase
     {
         private readonly IToDoAppService _toDoAppService;
@@ -69,7 +71,8 @@ namespace ToDoApp.Server.Controllers
             }
         }
 
-        public async Task<ActionResult> DeleteToDoItems(Guid id)
+        [HttpDelete]
+        public async Task<ActionResult> DeleteToDoItems([FromBody] Guid id)
         {
             try
             {

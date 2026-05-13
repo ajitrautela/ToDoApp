@@ -2,7 +2,7 @@
 
 namespace ToDoApp.Server.Data.Repository.Contracts
 {
-    public interface IToDoRepositoy
+    public interface IToDoRepository
     {
         Task<List<ToDoItem>> GetAllAsync();
         Task<ToDoItem?> GetByIdAsync(Guid id);

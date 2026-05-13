@@ -7,8 +7,8 @@ namespace ToDoApp.Server.Business
 {
     public class ToDoAppService : IToDoAppService
     {
-        private readonly IToDoRepositoy _toDoRepository;
-        public ToDoAppService(IToDoRepositoy toDoRepository)
+        private readonly IToDoRepository _toDoRepository;
+        public ToDoAppService(IToDoRepository toDoRepository)
         {
             _toDoRepository = toDoRepository;
         }

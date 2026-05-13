@@ -7,7 +7,7 @@ using ToDoApp.Server.Models.Domain;
 
 namespace ToDoApp.Server.Data.Repository
 {
-    public class ToDoRepository : IToDoRepositoy
+    public class ToDoRepository : IToDoRepository
     {
         private readonly ToDoDbContext _dbContext;
         public ToDoRepository(ToDoDbContext toDoDbContext)
@@ -16,7 +16,7 @@ namespace ToDoApp.Server.Data.Repository
         }
         public async Task<ToDoItem> AddAsync(ToDoItem item)
         {
-            var newItem = _dbContext.ToDoItems.Attach(item);
+            var newItem = _dbContext.ToDoItems.Add(item);
             await _dbContext.SaveChangesAsync();
 
             return newItem.Entity;
