@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoApp.Server.Data\ToDoApp.Server.Data.csproj" />
+    <ProjectReference Include="..\ToDoApp.Server.Models\ToDoApp.Server.Models.csproj" />
+  </ItemGroup>
+
+</Project>
