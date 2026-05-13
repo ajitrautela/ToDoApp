@@ -11,8 +11,9 @@
            [(ngModel)]="newItemName"
            name="itemName"
            placeholder="Buy milk"
-           class="form-control m-2" />
-    <button type="submit" class="btn btn-primary m-2">Add New Item</button>
+           class="form-control m-2"
+           title="Add a new item to be added to the list" />
+    <button type="submit" class="btn btn-primary m-2" title="Add new item">Add New Item</button>
   </form>
 
   <div *ngIf="isLoading" class="spinner-border m-2">
@@ -25,7 +26,7 @@
     <table class="table table-striped">
       <tbody>
         <tr *ngFor="let todo of todos">
-          <td class="m-2" style="width:20px">
+          <td class="m-2" style="width:20px" title="Remove item">
             <button (click)="deleteTodoItem(todo.id)" class="btn btn-sm btn-danger">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
