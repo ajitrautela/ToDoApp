@@ -1,6 +1,11 @@
-# A simple ToDo App built in Angular v21 as frontend and .NET 10 as backend API
+# A simple ToDo App 
 
-EF ImMemory database to hold data temporarily
+Built in
+
+    - Angular v21 as frontend 
+    - .NET 10 as backend API
+
+EF InMemory database to hold data temporarily
 
 ApiKey authentication to secure the requests to backend. For this demo hardcoded Api token has been used
 
