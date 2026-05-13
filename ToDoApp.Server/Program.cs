@@ -89,7 +89,6 @@ app.UseExceptionHandler(appError =>
 // Custom API key authentication middleware
 app.UseMiddleware<ApiKeyMiddleware>();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
