@@ -27,8 +27,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddSingleton<IToDoAppService, ToDoAppService>();
-builder.Services.AddSingleton<IToDoRepository, ToDoRepository>();
+builder.Services.AddScoped<IToDoAppService, ToDoAppService>();
+builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
 
 // API versioning configuration
 builder.Services.AddApiVersioning(options =>
@@ -46,7 +46,7 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.AddDbContext<ToDoDbContext>(options => options.UseInMemoryDatabase("ToDoAppDb"), ServiceLifetime.Singleton);
+builder.Services.AddDbContext<ToDoDbContext>(options => options.UseInMemoryDatabase("ToDoAppDb"), ServiceLifetime.Scoped);
 
 var app = builder.Build();
 
