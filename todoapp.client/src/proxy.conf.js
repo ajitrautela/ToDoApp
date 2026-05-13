@@ -6,9 +6,9 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 const PROXY_CONFIG = [
   {
     context: [
-      "/api/v1/todoitems",
+      "/api",
     ],
-    target,
+    target: "https://localhost:7196",
     secure: false
   }
 ]

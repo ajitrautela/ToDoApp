@@ -10,6 +10,5 @@ namespace ToDoApp.Server.Models.Domain
         public int Id { get; set; }
 
         public required string ItemName { get; set; }
-        public required bool IsCompleted { get; set; } = false;
     }
 }

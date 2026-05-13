@@ -37,7 +37,7 @@ namespace ToDoApp.Server.Controllers
         }
 
         [HttpGet]
-        [Route("id:int")]
+        [Route("{id:int}")]
         public async Task<ActionResult<ToDoItemDto>> GetToDoItemById(int id)
         {
             try
@@ -56,11 +56,16 @@ namespace ToDoApp.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ToDoItemDto>> PostToDoItem([FromBody] ToDoItemDto todoItem)
+        public async Task<ActionResult<ToDoItemDto>> PostToDoItem([FromBody] PostRequestDto item)
         {
             try
             {
-                var addedItem = await _toDoAppService.AddToDoItemAsync(todoItem);
+                ToDoItemDto toDoItem = new ToDoItemDto
+                {
+                    ItemName = item.ItemName
+                };
+
+                var addedItem = await _toDoAppService.AddToDoItemAsync(toDoItem);
 
                 return CreatedAtAction(nameof(GetToDoItemById), new { id = addedItem.Id }, addedItem);
             }
@@ -72,12 +77,13 @@ namespace ToDoApp.Server.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteToDoItems([FromBody] int id)
+        [Route("{id:int}")]
+        public async Task<ActionResult> DeleteToDoItems(int id)
         {
             try
             {
                 await _toDoAppService.DeleteToDoItemAsync(id);
-                return Ok(true);
+                return Ok();
             }
             catch (Exception ex)
             {

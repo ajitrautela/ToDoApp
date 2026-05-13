@@ -31,7 +31,7 @@ export class TodoListComponent implements OnInit {
         this.isLoading = false;
       },
       error: () => {
-        this.error = 'Failed to load items';
+        this.error = 'Failed to load items.';
         this.isLoading = false;
       },
     });

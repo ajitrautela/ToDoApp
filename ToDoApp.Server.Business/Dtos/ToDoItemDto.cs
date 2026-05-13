@@ -6,7 +6,6 @@ namespace ToDoApp.Server.Business.Dtos
     {
         public int Id { get; set; }
         public required string ItemName { get; set; }
-        public required bool IsCompleted { get; set; }
     }
 
     // Mapping extension methods to convert between ToDoItem and ToDoItemDto
@@ -18,7 +17,6 @@ namespace ToDoApp.Server.Business.Dtos
             {
                 Id = item.Id,
                 ItemName = item.ItemName,
-                IsCompleted = item.IsCompleted
             };
         }
         public static ToDoItem ToModel(this ToDoItemDto item)
@@ -27,7 +25,6 @@ namespace ToDoApp.Server.Business.Dtos
             {
                 Id = item.Id,
                 ItemName = item.ItemName,
-                IsCompleted = item.IsCompleted
             };
         }
     }

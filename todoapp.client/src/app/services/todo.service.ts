@@ -12,8 +12,8 @@ export class TodoService {
     return this.http.get<TodoItem[]>(this.apiUrl);
   }
 
-  addTodoItem(itemName: string): Observable<TodoItem> {
-    return this.http.post<TodoItem>(this.apiUrl, { itemName });
+  addTodoItem(item: string): Observable<TodoItem> {
+    return this.http.post<TodoItem>(this.apiUrl, { itemName: item });
   }
 
   deleteTodoItem(id: number): Observable<void> {
