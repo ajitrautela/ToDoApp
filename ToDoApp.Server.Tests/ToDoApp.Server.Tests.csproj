@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ToDoApp.Server.Business\ToDoApp.Server.Business.csproj" />
+    <ProjectReference Include="..\ToDoApp.Server\ToDoApp.Server.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

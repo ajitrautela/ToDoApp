@@ -6,11 +6,11 @@
   ToDo App Demo</div>
   <p *ngIf="!isLoading && todos.length === 0" class="m-2">No items yet.</p>
 
-  <form (ngSubmit)="addTodoItem()">
+  <form *ngIf="!isLoading" (ngSubmit)="addTodoItem()">
     <input type="text"
            [(ngModel)]="newItemName"
            name="itemName"
-           placeholder="Do groceries"
+           placeholder="Buy milk"
            class="form-control m-2" />
     <button type="submit" class="btn btn-primary m-2">Add New Item</button>
   </form>

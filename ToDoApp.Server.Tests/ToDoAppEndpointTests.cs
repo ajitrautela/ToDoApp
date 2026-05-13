@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System.Net;
 using System.Net.Http.Json;
+using ToDoApp.Server.Business.Dtos;
 
 namespace ToDoApp.Server.Tests
 {
@@ -17,23 +18,23 @@ namespace ToDoApp.Server.Tests
         [Fact]
         public async Task Post_Then_Get_Returns_Item()
         {
-            var create = new CreateTodoItemRequest("Test item");
-            var postResponse = await _client.PostAsJsonAsync("/api/todos", create);
+            var create = new PostRequestDto("Test add item");
+            var postResponse = await _client.PostAsJsonAsync("/api/v1/todoitems", create);
             postResponse.EnsureSuccessStatusCode();
 
-            var list = await _client.GetFromJsonAsync<List<TodoItemDto>>("/api/todos");
+            var list = await _client.GetFromJsonAsync<List<ToDoItemDto>>("/api/v1/todoitems");
             Assert.NotNull(list);
-            Assert.Contains(list, x => x.Title == "Test item");
+            Assert.Contains(list, x => x.ItemName == "Test add item");
         }
 
         [Fact]
         public async Task Delete_Removes_Item()
         {
-            var create = new CreateTodoItemRequest("To delete");
-            var postResponse = await _client.PostAsJsonAsync("/api/todos", create);
-            var created = await postResponse.Content.ReadFromJsonAsync<TodoItemDto>();
+            var create = new PostRequestDto("Delete item");
+            var postResponse = await _client.PostAsJsonAsync("/api/v1/todoitems", create);
+            var created = await postResponse.Content.ReadFromJsonAsync<ToDoItemDto>();
 
-            var deleteResponse = await _client.DeleteAsync($"/api/todos/{created!.Id}");
+            var deleteResponse = await _client.DeleteAsync($"/api/v1/todoitems/{created!.Id}");
             Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
         }
     }
