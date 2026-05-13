@@ -83,7 +83,7 @@ namespace ToDoApp.Server.Controllers
             try
             {
                 await _toDoAppService.DeleteToDoItemAsync(id);
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {
